@@ -1,8 +1,14 @@
 package com.example.mapwithmarker;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,8 +28,8 @@ import java.util.List;
 /**
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
  */
-public class MapsMarkerActivity extends AppCompatActivity
-        implements OnMapReadyCallback {
+public class MapsMarkerActivity extends AppCompatActivity implements
+        OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class MapsMarkerActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
     }
 
+
     /**
      * Manipulates the map when it's available.
      * The API invokes this callback when the map is ready to be used.
@@ -46,6 +53,8 @@ public class MapsMarkerActivity extends AppCompatActivity
      * Play services inside the SupportMapFragment. The API invokes this method after the user has
      * installed Google Play services and returned to the app.
      */
+    private List<CoworkingSpace> locations = new ArrayList<>();
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Add a marker in Sydney, Australia,
@@ -56,12 +65,10 @@ public class MapsMarkerActivity extends AppCompatActivity
             googleMap.addMarker(new MarkerOptions().position(marker)
             .title(location.getTitle()));
         }
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"));
         //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
-    private List<CoworkingSpace> locations = new ArrayList<>();
+    
     private void readLocations() {
         InputStream is = getResources().openRawResource(R.raw.androidchallenge);
         BufferedReader reader = new BufferedReader(
@@ -75,8 +82,8 @@ public class MapsMarkerActivity extends AppCompatActivity
 
                 CoworkingSpace location = new CoworkingSpace();
                 location.setTitle(tokens[2]);
-                location.setLatitude(Float.parseFloat(tokens[7]));
-                location.setLongitude(Float.parseFloat(tokens[8]));
+                location.setLatitude(Double.parseDouble(tokens[7]));
+                location.setLongitude(Double.parseDouble(tokens[8]));
                 locations.add(location);
 
                 Log.d("MapsMarkerActivity", "Added Location: " + location);
@@ -86,4 +93,6 @@ public class MapsMarkerActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
+
+
 }

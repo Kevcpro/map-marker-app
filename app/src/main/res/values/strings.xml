@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Android Challenge</string>
-    <string name="title_activity_maps">Map with Marker</string>
+    <string name="title_activity_maps">Marker Locations</string>
+    <string name="search_title">Marker Locations</string>
 </resources>

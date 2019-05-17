@@ -2,8 +2,20 @@ package com.example.mapwithmarker;
 
 public class CoworkingSpace {
     private String title;
-    private Float latitude;
-    private Float longitude;
+    private double latitude;
+    private double longitude;
+
+    public CoworkingSpace() {
+        this.title = "";
+        this.latitude = 0.0;
+        this.longitude = 0.0;
+    }
+
+    public CoworkingSpace(String title, double latitude, double longitude) {
+        this.title = title;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public String getTitle() {
         return title;
@@ -13,28 +25,19 @@ public class CoworkingSpace {
         this.title = title;
     }
 
-    public Float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
-    }
-
-    @Override
-    public String toString() {
-        return "CoworkingSpace{" +
-                "title='" + title + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
     }
 }
